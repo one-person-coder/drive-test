@@ -1,3 +1,4 @@
+import Script from "next/script";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
@@ -52,6 +53,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <GoogleAnalytics gaId="G-1JCH9F9LQL" />
+
+      {/* Adsterra Pop Ad */}
+      <Script
+        src="//pl26494530.profitableratecpm.com/9f/44/83/9f448307a53ed619d61f24133b64dd4f.js"
+        strategy="afterInteractive"
+      />
+
+      {/* Adsterra Social Ad */}
+      <Script
+        src="//pl26494823.profitableratecpm.com/7e/2d/35/7e2d35514acc5d4c42fdf33927975efc.js"
+        strategy="afterInteractive"
+      />
       <body>{children}</body>
     </html>
   );
