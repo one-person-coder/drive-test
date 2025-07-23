@@ -1,37 +1,33 @@
-import {
-  Download,
-  Cloud,
-  MessageSquare,
-  Layers,
-  Bot,
-  ExternalLink,
-} from "lucide-react";
+import { Download } from "lucide-react";
 import { getApiUrl } from "@/constants/constants";
-
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MovieDetail from "@/components/download/MovieDetail";
-import NotFoundPage from "../not-found";
 import InstantDownload from "@/components/download/InstantDownload";
 import ResumeCloud from "@/components/download/ResumeCloud";
 import WorkerCloud from "@/components/download/WorkerCloud";
 import DirectDownload from "@/components/download/DirectDownload";
+import MovieDetailLoader from "@/components/MovieDetailLoader";
+import { Suspense } from "react";
+import { notFound } from "next/navigation";
+
+async function LoadMovieDetail({ slug }) {
+  const res = await fetch(getApiUrl(slug, "detail"), {
+    cache: "no-store",
+  });
+
+  const data = await res.json();
+
+  if (!data?.success || data?.expired) {
+    return notFound();
+  }
+
+  return <MovieDetail info={data} />;
+}
 
 export default async function DownloadPage({ params }) {
   const { slug } = await params;
-
-  const movie = await fetch(getApiUrl(slug, "detail"));
-  const movieInfo = await movie.json();
-
-  if (!movieInfo?.success) {
-    return <NotFoundPage />;
-  }
-
-  if (movieInfo?.expired) {
-    return <NotFoundPage />;
-  }
 
   return (
     <div className="min-h-screen bg-black/10 text-zinc-100">
@@ -39,7 +35,9 @@ export default async function DownloadPage({ params }) {
       <main className="py-10 md:py-12 relative">
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col gap-8">
-            <MovieDetail info={movieInfo} />
+            <Suspense fallback={<MovieDetailLoader />}>
+              <LoadMovieDetail slug={slug} />
+            </Suspense>
 
             <Card className="bg-zinc-900/50 border-zinc-800 backdrop-blur-md overflow-hidden">
               <CardHeader className="pb-4">
