@@ -15,15 +15,18 @@ const WorkerCloud = () => {
 
   useEffect(() => {
     const getDownloadLink = async () => {
-      const movie = await fetch(getApiUrl(pathname, "worker"));
-      const movieInfo = await movie.json();
+      try {
+        const movie = await fetch(getApiUrl(pathname, "worker"));
+        const movieInfo = await movie.json();
 
-      if (movieInfo.success) {
-        setLink(movieInfo.link);
-      } else {
-        console.log(movieInfo.msg);
+        if (movieInfo.success) {
+          setLink(movieInfo.link);
+        } else {
+          console.log(movieInfo.msg);
+        }
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
     getDownloadLink();
   }, []);

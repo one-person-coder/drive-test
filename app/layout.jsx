@@ -61,10 +61,10 @@ export default function RootLayout({ children }) {
       />
 
       {/* Adsterra Social Ad */}
-      <Script
+      {/* <Script
         src="//pl26494823.profitableratecpm.com/7e/2d/35/7e2d35514acc5d4c42fdf33927975efc.js"
         strategy="afterInteractive"
-      />
+      /> */}
       <body>{children}</body>
     </html>
   );
