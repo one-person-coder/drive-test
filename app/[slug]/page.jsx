@@ -17,6 +17,8 @@ async function LoadMovieDetail({ slug }) {
     const res = await fetch(getApiUrl(slug, "detail"), {
       cache: "no-store",
     });
+    console.log('URL', getApiUrl(slug, "detail"), "\n\n");
+    
     console.log(await res.text());
     const data = await res.json();
     
