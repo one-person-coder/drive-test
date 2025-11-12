@@ -19,7 +19,7 @@ async function LoadMovieDetail({ slug }) {
     });
     const data = await res.json();
 
-    if (!data?.success || data?.expired) {
+    if (!data?.success) {
       return notFound();
     }
     return <MovieDetail info={data} />;
