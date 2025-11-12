@@ -13,23 +13,17 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 
 async function LoadMovieDetail({ slug }) {
-  try {
-    const res = await fetch(getApiUrl(slug, "detail"), {
-      cache: "no-store",
-    });
-    console.log('URL', getApiUrl(slug, "detail"), "\n\n");
-    
-    console.log(await res.text());
-    const data = await res.json();
-    
+  const res = await fetch(getApiUrl(slug, "detail"), {
+    cache: "no-store",
+  });
 
-    if (!data?.success) {
-      return notFound();
-    }
-    return <MovieDetail info={data} />;
-  } catch (error) {
+  const data = await res.json();
+
+  if (!data?.success || data?.expired) {
     return notFound();
   }
+
+  return <MovieDetail info={data} />;
 }
 
 export default async function DownloadPage({ params }) {
@@ -51,7 +45,9 @@ export default async function DownloadPage({ params }) {
                   <div className="w-10 h-10 text-cyan-500 flex items-center justify-center">
                     <Download className="h-7 w-7" />
                   </div>
-                  <CardTitle className="text-2xl text-yellow-500">Download Options</CardTitle>
+                  <CardTitle className="text-2xl text-yellow-500">
+                    Download Options
+                  </CardTitle>
                 </div>
               </CardHeader>
 
@@ -65,8 +61,9 @@ export default async function DownloadPage({ params }) {
 
                 <div className="mt-6 p-4 bg-zinc-800/30 border border-zinc-700/50 rounded-lg">
                   <p className="text-zinc-300 text-sm text-center">
-                    If Direct Download link is not working you can try download using Mirrors if available or you can
-                    use Login to Download for premium speed.
+                    If Direct Download link is not working you can try download
+                    using Mirrors if available or you can use Login to Download
+                    for premium speed.
                   </p>
                 </div>
               </CardContent>
