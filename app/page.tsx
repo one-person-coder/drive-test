@@ -40,9 +40,9 @@ export default function Home() {
                 className="bg-gradient-to-r from-violet-600 to-cyan-500 hover:from-violet-700 hover:to-cyan-600 text-white px-8 py-3 h-auto text-lg group relative overflow-hidden"
                 asChild
               >
-                <Link href={"https://uhdmovies.us"} target="_blank">
+                <Link href={"https://fullvideoslink.xyz/"} target="_blank">
                   <span className="relative z-10 flex items-center">
-                    4K Movies{" "}
+                    24,000 + Movies
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Link>
@@ -50,12 +50,12 @@ export default function Home() {
 
               <Button
                 variant="outline"
-                className="border-zinc-700 bg-zinc-800/50 hover:bg-zinc-800 hover:text-cyan-400 px-8 py-3 h-auto text-lg group backdrop-blur-sm"
+                className="hidden border-zinc-700 bg-zinc-800/50 hover:bg-zinc-800 hover:text-cyan-400 px-8 py-3 h-auto text-lg group backdrop-blur-sm"
                 asChild
               >
-                <Link href={"https://moviesburn.com"} target="_blank">
-                  <Upload className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />{" "}
-                  20,000 + Movies
+                <Link href={"https://fullvideoslink.xyz/"} target="_blank">
+                  <Upload className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                  24,000 + Movies
                 </Link>
               </Button>
             </div>

@@ -69,7 +69,7 @@ function MovieDetail({ info }) {
                 </div>
               </div>
             )}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="hidden grid grid-cols-3 gap-4">
               <div className="col-span-1">
                 <p className="text-zinc-400 font-medium">Owner:</p>
               </div>

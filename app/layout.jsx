@@ -3,8 +3,7 @@ import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 const title = "DriveBurn | MoviesBurn, MoviesMod, DriveSeed, DriveLeech";
-const description =
-  "DriveBurn is the Best Drive Site for Downloading Movies & Series.";
+const description = "DriveBurn is the Best Drive Site for Downloading Movies & Series.";
 
 const mainRootDomain = "https://drive.moviesburn.com";
 
@@ -50,21 +49,18 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const popunder = process.env.ADSTERRA_POPUNDER;
+  const socialBar = process.env.ADSTERRA_SOCIAL;
+
   return (
     <html lang="en">
       <GoogleAnalytics gaId="G-1JCH9F9LQL" />
 
       {/* Adsterra Pop Ad */}
-      <Script
-        src="//pl26494530.profitableratecpm.com/9f/44/83/9f448307a53ed619d61f24133b64dd4f.js"
-        strategy="afterInteractive"
-      />
+      <Script src={popunder} strategy="afterInteractive" />
 
       {/* Adsterra Social Ad */}
-      {/* <Script
-        src="//pl26494823.profitableratecpm.com/7e/2d/35/7e2d35514acc5d4c42fdf33927975efc.js"
-        strategy="afterInteractive"
-      /> */}
+      <Script src={socialBar} strategy="afterInteractive" />
       <body>{children}</body>
     </html>
   );
